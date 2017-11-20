@@ -14,7 +14,7 @@ import DBConnect
 @app.route('/')
 @app.route('/index')
 def index():
-    return "Hello, World!"
+    return render_template('startPage.html')
 
 @app.route("/addItem", methods=["GET", "POST"])
 def addItem():

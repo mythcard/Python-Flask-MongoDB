@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Items</title>
+</head>
+<body>
+<h2>Product Catalog</h2>
+<table>
+
+<tr>
+<td>
+<div>
+    <table>
+        <tr><td>
+            <div>  <h4>Product Name</h4> </div></td>
+            <td><div>  <h4>Product Price</h4> </div></td>
+            <td><div>  <h4>Product Code</h4> </div></td>
+        </tr>
+		{%for val in all_products%}
+        <tr><td>
+            <div>  {{ val['productName']  }}</div></td>
+            <td><div>  {{ val['productPrice']  }}</div></td>
+            <td><div>  {{ val['productCode']  }}</div></td>
+        </tr>
+		{%endfor%}
+    </table>
+
+ <form action="{{url_for('addItem')}}" method="post">
+    <input type = 'text' name = 'item' placeholder = 'Enter Product Code here:' ><br>
+    <button class="btn btn-default btn-primary" type="submit" name ="submit" value="add">Add</button>
+    <button class="btn btn-default btn-primary" type="submit" name="submit" value="delete">Delete</button>
+</form>
+
+</div>
+</td>
+    <td>
+        <div>
+    <h4>Items in Cart</h4>
+    <table>
+		{%for val in lstOfItems%}
+        <tr><td>
+            <div>  {{ val  }}</div></td></tr>
+		{%endfor%}
+    </table>
+
+
+</div>
+    </td>
+</tr>
+</table>
+
+<p>Link to find the finalized bill: <a href="{{url_for('all_items_trans')}}">Click here!</a></p>
+
+</body>
+</html>
