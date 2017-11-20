@@ -1,0 +1,54 @@
+Instructions for MongoDB set up
+
+Once the image for MongoDB is installed, please follow below steps to bash into MongoDB of the container to create a database, a collection and few records
+
+# Create a container from the mongo image, 
+#  run is as a daemon (-d), expose the port 27017 (-p),
+#  set it to auto start (--restart)
+#  and with mongo authentication (--auth)
+
+docker pull mongo
+docker run --name YOURCONTAINERNAME --restart=always -d -p 27017:27017 mongo mongod --auth
+
+# Using the mongo "localhost exception" (https://docs.mongodb.org/v3.0/core/security-users/#localhost-exception) 
+# add a root user
+
+# bash into the container
+sudo docker exec -i -t YOURCONTAINERNAME bash
+
+# connect to local mongo
+mongo
+
+# create the first admin user
+use admin
+db.createUser({user:"foouser",pwd:"foopwd",roles:[{role:"root",db:"admin"}]})
+
+# exit the mongo shell
+exit
+# exit the container
+exit
+
+# now you can connect with the admin user (from any mongo client >=3 )
+#  remember to use --authenticationDatabase "admin"
+mongo -u "foouser" -p "foopwd" YOURHOSTIP --authenticationDatabase "admin"
+
+###################### steps to create the database objects
+
+# once connected, 
+# create a database 'checkOut'
+use checkOut
+
+# create a collection
+db.createCollection("productCatalog");
+
+# insert below documents in the collection, all documents can be inserted at once 
+db.productCatalog.insert([{productCode:"CH1", productName:"Chai", productPrice: 3.11 }]);
+
+db.productCatalog.insert([{productCode:"AP1", productName:"Apples", productPrice: 6.00 }]);
+
+db.productCatalog.insert([{productCode:"CF1", productName:"Coffee", productPrice: 11.23 }]);
+
+db.productCatalog.insert([{productCode:"MK1", productName:"Milk", productPrice: 4.75 }]);
+
+db.productCatalog.insert([{productCode:"OM1", productName:"Oatmeal", productPrice: 3.69 }]);
+
