@@ -43,6 +43,9 @@ the other folders are necessary for:
 
 **docker-compose-yml** -> is the orquestrator that starts building the containers and link them up.
 
+Reference: I have used following link as the reference to create docker container, but made modifications according to my requirement
+https://github.com/ivoreali/Python-Flask-MongoDB
+
 
 
 
