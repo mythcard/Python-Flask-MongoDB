@@ -1,5 +1,5 @@
 FROM       ubuntu:latest
-MAINTAINER Ivo Camargo <ivo.camargo@neoway.com.br>
+MAINTAINER amith hegde <mythcard@gmail.com>
 
 # Update apt-get sources AND install Python-dve
 RUN apt-get update && apt-get install -y build-essential python-dev 

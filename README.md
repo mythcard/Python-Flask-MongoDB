@@ -1,5 +1,4 @@
-
-## Initial Development Environment to work with Python, Flask and MongoDB
+Transactional Check Out System
 
 It uses **Docker-compose**:
 Compose is a tool for defining and running complex applications with Docker. With Compose, you define a multi-container application in a single file, then spin your application up in a single command which does everything that needs to be done to get it running.
@@ -28,7 +27,7 @@ docker-compose-yml
 
 Within the **app** folder, there is an app.py file which is file that starts Flask.
 
-This app.py file is shared with the container, so if you edit it locally on your machine, it will reflect on the container which is running Flask on port 5000.
+
 
 If everything works fine, you should be able to connect to a simple page (Hello World) at:
 

@@ -25,7 +25,13 @@ class Transaction:
         totalPrice = 0
 
 
-
+    """
+    performs three operations
+    1. Add all items in the form item(product code, productname, product price) in a list
+    2. keeps updating a dictionary of the form productcode -> total count of the product
+    3. keeps track of total price
+    all in one linear pass
+    """
     def addItem(self,allItemsAdded):
         self.dict1 = dict()
         for pdCode in allItemsAdded:
@@ -44,7 +50,7 @@ class Transaction:
         print(self.dict1.viewvalues())
 
 
-
+    """ this function is used in all 4 discounts to check if a particular amount of items are brought or not"""
     def checkLimit(self, itemName, n):
         if itemName not in self.dict1:
             return False
@@ -54,6 +60,9 @@ class Transaction:
             return False
 
     """ needs a carefully crafted edge case check when buyLimit, getLimit  > 1 """
+    """ this is a generic function used in BOGO and CHMK for scenarios like buy N items to get M items free
+        this function return the M value as to what is the number of eligible items to be returned
+    """
     def buyNgetNFree(self,buyLimit,buyItem, getLimit, getItem, limit):
         cnt = 0
         print("Here: ")
@@ -71,11 +80,12 @@ class Transaction:
                 while(buyItemCount > 0):
                     buyItemCount-= buyLimit
                     if(buyItemCount>=getLimit ):
+                        print("Here Count Check",buyItemCount, getLimit)
                         buyItemCount -= getLimit
                         cnt += getLimit
-                    else:
-                        if((getLimit - buyItemCount)> 0):
-                            cnt += getLimit - buyItemCount
+                  #  else:
+                  #      if((getLimit - buyItemCount)> 0):
+                  #          cnt += getLimit - buyItemCount
             else:
                 while(buyItemCount > 0 and getItemCount > 0):
                     buyItemCount -= buyLimit
@@ -137,7 +147,7 @@ class Transaction:
                 self.dict1[itm.productName] = 1
             limit -= 1
 
-
+    """ final bill is nothing but all items in the transaction object """
     def getListOfItems(self):
         lstOfItemsproductCode = []
         lstOfItemsproductName = []
