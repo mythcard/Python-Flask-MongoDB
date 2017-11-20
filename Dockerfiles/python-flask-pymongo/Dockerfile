@@ -2,7 +2,7 @@ FROM       ubuntu:latest
 MAINTAINER Ivo Camargo <ivo.camargo@neoway.com.br>
 
 # Update apt-get sources AND install Python-dve
-RUN apt-get update && sudo apt-get install -y build-essential python-dev 
+RUN apt-get update && apt-get install -y build-essential python-dev 
 RUN apt-get install -y python-setuptools
 RUN apt-get install -y python-pip
 RUN apt-get install -y nano
